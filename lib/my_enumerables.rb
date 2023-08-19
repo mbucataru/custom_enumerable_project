@@ -14,6 +14,13 @@ module Enumerable
     end
     return_array
   end
+
+  def my_all?(&block)
+    self.my_each do |element|
+      return false unless block.call(element)
+    end
+    true
+  end
 end
 
 # You will first have to define my_each
@@ -31,4 +38,4 @@ class Array
 end
 
 array = [5, 3, 2]
-p array.my_select { |element| element > 2 }
+p array.my_all? { |element| element > 2 }
