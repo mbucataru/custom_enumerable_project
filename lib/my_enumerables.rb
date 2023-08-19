@@ -28,6 +28,13 @@ module Enumerable
     end
     false
   end
+
+  def my_none?(&block)
+    self.my_each do |element|
+      return false if block.call(element)
+    end
+    true
+  end
 end
 
 # You will first have to define my_each
