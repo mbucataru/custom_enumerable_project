@@ -6,6 +6,14 @@ module Enumerable
     end
     self
   end
+
+  def my_select(&block)
+    return_array = []
+    self.my_each do |element|
+      return_array << element if block.call(element)
+    end
+    return_array
+  end
 end
 
 # You will first have to define my_each
@@ -23,7 +31,4 @@ class Array
 end
 
 array = [5, 3, 2]
-array.my_each_with_index do |element, index|
-  puts "The current element is #{element}"
-  puts "The current index is #{index}"
-end
+p array.my_select { |element| element > 2 }
