@@ -52,6 +52,14 @@ module Enumerable
       count_return
     end
   end
+
+  def my_map(&block)
+    return_array = []
+    self.my_each do |element|
+      return_array << block.call(element)
+    end
+    return_array
+  end
 end
 
 # You will first have to define my_each
@@ -69,4 +77,4 @@ class Array
 end
 
 array = [5, 3, 2]
-p array.my_count(3)
+p array.my_map{ |element| element += 2 }
