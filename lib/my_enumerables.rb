@@ -60,6 +60,19 @@ module Enumerable
     end
     return_array
   end
+
+  def my_inject(arg = nil, &block)
+    if arg
+      return_sum = arg
+    else
+      return_sum = self[0]
+    end
+    self.my_each_with_index do |element, index|
+      next if index == 0
+      return_sum = block.call(return_sum, element)
+    end
+    return_sum
+  end
 end
 
 # You will first have to define my_each
@@ -75,6 +88,3 @@ class Array
     self
   end
 end
-
-array = [5, 3, 2]
-p array.my_map{ |element| element += 2 }
