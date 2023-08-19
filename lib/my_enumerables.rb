@@ -1,5 +1,11 @@
 module Enumerable
   # Your code goes here
+  def my_each_with_index(&block)
+    self.length.times do |index|
+      block.call(self[index], index)
+    end
+    self
+  end
 end
 
 # You will first have to define my_each
@@ -14,4 +20,10 @@ class Array
     end
     self
   end
+end
+
+array = [5, 3, 2]
+array.my_each_with_index do |element, index|
+  puts "The current element is #{element}"
+  puts "The current index is #{index}"
 end
