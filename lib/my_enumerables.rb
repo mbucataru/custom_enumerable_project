@@ -35,6 +35,23 @@ module Enumerable
     end
     true
   end
+
+  def my_count(arg = nil, &block)
+    count_return = 0
+    if block_given?
+      self.my_each do |element|
+        count_return += 1 if block.call(element)
+      end
+      count_return
+    elsif arg == nil
+      self.length
+    else
+      self.my_each do |element|
+        count_return += 1 if element == arg
+      end
+      count_return
+    end
+  end
 end
 
 # You will first have to define my_each
@@ -52,4 +69,4 @@ class Array
 end
 
 array = [5, 3, 2]
-p array.my_all? { |element| element > 2 }
+p array.my_count(3)
